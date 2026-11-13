@@ -5,13 +5,28 @@ from .models import Websites
 @admin.register(Websites)
 class WebsitesAdmin(admin.ModelAdmin):
 
-    list_display = ["name","url","created_at"]
-    # 列表页显示哪些列的内容
+    list_display = (
+        "name",
+        "route_name",
+        "url",
+        "is_active",
+        "show_in_random",
+        "search_enabled",
+        "search_order",
+        "created_at",
+    )
 
-    search_fields = ["name","url"]
-    # 搜索框可搜索哪些内容
+    list_filter = (
+        "is_active",
+        "show_in_random",
+        "search_enabled",
+        "created_at",
+    )
 
-    list_filter = ["created_at"]
-    # 右侧筛选器可用筛选项
+    search_fields = (
+        "name",
+        "url",
+        "route_name",
+    )
 
     ordering = ["-created_at"]
